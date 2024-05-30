@@ -3,12 +3,6 @@
 require "function.php";
 $musik=query("select * from musik join artis on id_artis = artis.id"); 
 
-session_start();
-
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
 
 ?>
 <!DOCTYPE html>
@@ -59,7 +53,10 @@ if (!isset($_SESSION['username'])) {
 <div class="artis-container">
  <div class="artis-judul"></a>
 
- <b>ARTIS</b></div>
+
+ <b>ARTIS</b>
+ <br>  <a href="tambah_artis.php"><button>Tambahkan Artis</button></a>
+ </div>
     <div class="card-container">
     <?php
     foreach ($musik as $msk):
@@ -67,6 +64,7 @@ if (!isset($_SESSION['username'])) {
         <div class="card">
         <img src="foto/<?= $msk['image']?>" alt="Foto 1">
         <p><?= $msk['nama_artis']?></p>
+        <a href="tambah_lagu.php"><button>Tambahkan Lagu</button></a>
         </div>
         <?php
         endforeach;
@@ -74,17 +72,4 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 </div>
-
-
-<section class="contact" id="contact"></section>
-<div class="contact-container">
-<h2>Contact Us</h2>
-    <form action="sandyalfaizal49@gmail.com" method="post" enctype="text/plain">
-        <input type="text" name="name" placeholder="Your Name" required><br>
-        <input type="text" name="email" placeholder="Your Email" required><br>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
-        <input type="submit" value="Send Email">
-    </form>
-</div>
-<script src="scripts.js"></script>
-    </body>
+</body>

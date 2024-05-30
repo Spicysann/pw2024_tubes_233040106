@@ -19,9 +19,9 @@ $musik=query("select * from musik join artis on id_artis = artis.id");
     <img src="foto/<?= $msk['image']?>" alt="Profile Picture" class="profile-pic">
     <div class="name"><?= $msk['nama_artis']?></div>
     <div class="description">
-        Deskripsi singkat tentang diri Anda. Ini bisa berisi informasi seperti pekerjaan, hobi, atau hal-hal lain yang ingin Anda sampaikan.
+    <?= $msk ['deskripsi'] ?>
     </div>
-    
+    <h3>Album</h3>
     <table>
         <tr>
             <th>Judul Lagu</th>

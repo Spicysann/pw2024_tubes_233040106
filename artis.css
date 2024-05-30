@@ -29,6 +29,14 @@ body {
     color: var(--extra-light);
 }
 
+h3 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--extra-light) !important;
+}
+
 .description {
     font-size: 16px;
     margin-bottom: 20px;

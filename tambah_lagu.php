@@ -25,12 +25,12 @@ if(isset($_POST['tambah'])) {
 
         <form action="" method="POST" enctype="multipart/formdata">
             <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
+                <label for="nama" class="form-label">Judul Lagu</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input type="text" class="form-control" id="image" name="image">
+                <label for="image" class="form-label">Lagu</label>
+                <input type="file" class="form-control" id="image" name="image">
             </div>
             <button type="submit" name="tambah" class="btn btn-primary">Tambah Data</button>
         </form>
