@@ -1,0 +1,56 @@
+:root {
+    --primary-color: #be149f;
+    --extra-light: #ffffff;
+    --extra-dark: #000000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: var(--extra-dark);
+}
+
+.profile-pic {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--extra-light);
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    max-width: 600px;
+    color: var(--extra-light);
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    color: var(--extra-light);
+}
+
+th,
+td {
+    border: 1px solid var(--extra-light);
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: var(--primary-color);
+}

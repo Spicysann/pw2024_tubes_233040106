@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 13, 2024 at 02:53 PM
+-- Generation Time: May 28, 2024 at 06:31 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -24,81 +24,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `artis`
---
-
-CREATE TABLE `artis` (
-  `id_artis` int NOT NULL,
-  `nama_artis` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `musik`
 --
 
 CREATE TABLE `musik` (
-  `id_musik` int NOT NULL,
+  `id` int NOT NULL,
   `nama_musik` varchar(255) NOT NULL,
-  `genre_musik` varchar(255) NOT NULL
+  `id_artis` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `user`
+-- Dumping data for table `musik`
 --
 
-CREATE TABLE `user` (
-  `id_user` int NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `musik` (`id`, `nama_musik`, `id_artis`) VALUES
+(1, 'Hahaha', 1),
+(2, 'Rapsodi', 2),
+(3, 'Introvert', 3),
+(4, 'Monokrom', 4),
+(5, 'Remaja', 5),
+(6, 'Dan...', 6);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `artis`
---
-ALTER TABLE `artis`
-  ADD PRIMARY KEY (`id_artis`);
-
---
 -- Indexes for table `musik`
 --
 ALTER TABLE `musik`
-  ADD PRIMARY KEY (`id_musik`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_artis` (`id_artis`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `artis`
---
-ALTER TABLE `artis`
-  MODIFY `id_artis` int NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `musik`
 --
 ALTER TABLE `musik`
-  MODIFY `id_musik` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -108,7 +74,7 @@ ALTER TABLE `user`
 -- Constraints for table `musik`
 --
 ALTER TABLE `musik`
-  ADD CONSTRAINT `musik_ibfk_1` FOREIGN KEY (`id_musik`) REFERENCES `artis` (`id_artis`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  ADD CONSTRAINT `musik_ibfk_1` FOREIGN KEY (`id_artis`) REFERENCES `artis` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
