@@ -1,6 +1,6 @@
 <?php
 require "function.php";
-$musik=query("select * from musik join artis on id_artis = artis.id"); 
+$musik=query("select * from musik join artis on id_artis = artis.id "); 
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@ $musik=query("select * from musik join artis on id_artis = artis.id");
             <th>Durasi</th>
         </tr>
         <tr>
-            <td><?= $msk ['nama_musik'] ?></</td>
+            <td><?= $msk ['nama_musik'] ?></td>
             <td><?= $msk ['durasi'] ?></td>
         </tr>
 

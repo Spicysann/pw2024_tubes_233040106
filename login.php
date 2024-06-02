@@ -48,38 +48,6 @@ if (isset($_POST["login"])){
 
 }
 
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     $username = $_POST['username'];
-//     $password = $_POST['password'];
-
-//     $sql = "SELECT * FROM users WHERE username = '$username'";
-//     $result = $conn->query($sql);
-
-//     if ($result->num_rows > 0) {
-//         $row = $result->fetch_assoc();
-//         if (password_verify($password, $row['password'])) {
-//             $conn = koneksi();
-//             $_SESSION['username'] = $username;
-//             $_SESION['login'] = true;
-
-//             $username = $_SESSION['username'] = $username;
-
-
-//             $result = mysqli_num_rows(mysqli_query("SELECT role FROM users WHERE role = 'admin'"));
-//             if ($result > 1) {
-//                 // header("Location: admin.php");
-//             } else {
-//                 // header("Location: index.php");
-//             }
-//         } else {
-//             echo "Invalid password";
-//         }
-//     } else {
-//         echo "No user found with that username";
-//     }
-
-//     $conn->close();
-// }
 ?>
 
 <!DOCTYPE html>

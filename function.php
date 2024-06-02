@@ -58,5 +58,61 @@ move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 return $namaFileBaru;
 }
 
+function search($keyword) {
+    $query = "SELECT * FROM musik join artis on id_artis = artis.id
+            WHERE nama_music
+            LIKE '%$keyword%'
+            OR nama_artis
+            Like '%$keyword%'
+";
+return query($query);
+}
+
+function tambah($data)
+{
+    $conn = koneksi();
+
+    $nama = htmlspecialchars($msk['image']);
+    $nim = htmlspecialchars($msk['nama_musik']);
+    $email = htmlspecialchars($msk['nama_artis']);
+    $jurusan = htmlspecialchars($msk['musik']);
+  
+    $query = "INSERT INTO musik join artis
+          VALUES (null, '$image', '$nama_musik', '$nama_artis', '$musik')
+    ";
+  
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapus($id)
+{
+    $conn = koneksi();
+    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+function ubah($data)
+{
+    $conn = koneksi();
+
+    $id = htmlspecialchars($msk['image']);
+    $nama = htmlspecialchars($msk['nama_musik']);
+    $nim = htmlspecialchars($msk['nama_artis']);
+    $email = htmlspecialchars($msk['musik']);
+
+  
+    $query = "UPDATE mahasiswa SET
+                foto = '$image',
+                nama_musik= '$nama_musik',
+                nama_artis= '$nama_artis',
+                musik = '$musik'
+                WHERE id = $id
+    ";
+  
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
 
 ?>
