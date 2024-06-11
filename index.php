@@ -33,9 +33,8 @@ if (!isset($_SESSION['username'])) {
             <input type="checkbox" name="check" id="check" />
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#artis">Artis</a></li>
+                <li><a href="#artis">Musik</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#">Profil</a></li>
                 <li><a href="logout.php">Log out</a></li>
                
             </ul>

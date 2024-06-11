@@ -53,32 +53,69 @@ $namaFileBaru = uniqid();
 $namaFileBaru = '.';
 $namaFileBaru = $ekstensiGambar;
 
-move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+move_uploaded_file($tmpName, 'foto/' . $namaFileBaru);
+
+return $namaFileBaru;
+}
+
+function uploadMusik(){
+    $namaFile = $_FILES['musik']['name'];
+    $ukuranFile = $_FILES['musik']['size'];
+    $error = $_FILES['musik']['error'];
+    $tmpName = $_FILES['musik']['tmp_name'];
+
+if( $error === 4 ) {
+    echo "<script>
+    alert ('pilih musik terlebih dahulu!');
+    </script>";
+    return false;
+}
+
+$ekstensiGambarValid = ['mp3'];
+$ekstensiGambar = explode('.', $namaFile);
+$ekstensiGambar = strtolower(end($ekstensiGambar));
+if(!in_array(ekstensiGambar, $ekstensiGambarValid)){
+    echo "<script>
+    alert ('Yang anda upload bukan musik!');
+    </script>";
+    return false;
+}
+
+if( $ukuranFile > 100000) {
+    echo "<script>
+    alert('Ukuran musik terlalu besar');
+    </script>";
+    return false;
+}
+
+$namaFileBaru = uniqid();
+$namaFileBaru = '.';
+$namaFileBaru = $ekstensiGambar;
+
+move_uploaded_file($tmpName, 'lagu/' . $namaFileBaru);
 
 return $namaFileBaru;
 }
 
 function search($keyword) {
     $query = "SELECT * FROM musik join artis on id_artis = artis.id
-            WHERE nama_music
+            WHERE nama_musik
             LIKE '%$keyword%'
-            OR nama_artis
+            OR id_artis
             Like '%$keyword%'
 ";
 return query($query);
 }
-
-function tambah($data)
+function tambahMusik($data)
 {
     $conn = koneksi();
 
-    $nama = htmlspecialchars($msk['image']);
-    $nim = htmlspecialchars($msk['nama_musik']);
-    $email = htmlspecialchars($msk['nama_artis']);
-    $jurusan = htmlspecialchars($msk['musik']);
+    $nama_musik = htmlspecialchars($data['nama_musik']);
+    $id_artis = htmlspecialchars($data['id_artis']);
+    $musik = htmlspecialchars($data['musik']);
   
-    $query = "INSERT INTO musik join artis
-          VALUES (null, '$image', '$nama_musik', '$nama_artis', '$musik')
+    $query = "INSERT INTO musik (nama_musik, id_artis, musik)
+          VALUES ('$nama_musik', '$id_artis', '$musik')
     ";
   
     mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -86,31 +123,71 @@ function tambah($data)
     return mysqli_affected_rows($conn);
 }
 
-function hapus($id)
+function hapusMusik($id)
 {
     $conn = koneksi();
-    mysqli_query($conn, "DELETE FROM mahasiswa WHERE id = $id");
+    mysqli_query($conn, "DELETE FROM musik WHERE id = $id");
     return mysqli_affected_rows($conn);
 }
-function ubah($data)
+function ubahMusik($data)
 {
     $conn = koneksi();
 
-    $id = htmlspecialchars($msk['image']);
-    $nama = htmlspecialchars($msk['nama_musik']);
-    $nim = htmlspecialchars($msk['nama_artis']);
-    $email = htmlspecialchars($msk['musik']);
-
+    $id = htmlspecialchars($data['id']);
+    $nama_musik = htmlspecialchars($data['nama_musik']);
+    $id_artis = htmlspecialchars($data['id_artis']);
+    $musik = htmlspecialchars($data['musik']);
   
-    $query = "UPDATE mahasiswa SET
-                foto = '$image',
-                nama_musik= '$nama_musik',
-                nama_artis= '$nama_artis',
-                musik = '$musik'
+    $query = "UPDATE musik SET
+                nama_musik = '$nama_musik',
+                id_artis = '$id_srtis',
+                musik = '$musik',
                 WHERE id = $id
     ";
   
     mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
+
+function tambahArtis($data)
+{
+    $conn = koneksi();
+
+    $nama_artis = htmlspecialchars($data['nama_artis']);
+    $image = htmlspecialchars($data['image']);
+  
+    $query = "INSERT INTO artis (nama_artis, image)
+          VALUES ('$nama_artis', '$image')
+    ";
+  
+    mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    return mysqli_affected_rows($conn);
+}
+
+function hapusArtis($id)
+{
+    $conn = koneksi();
+    $id = (int)$id;
+    mysqli_query($conn, "DELETE FROM artis WHERE id = $id");
+    return mysqli_affected_rows($conn);
+}
+function ubahArtis($data)
+{
+    $conn = koneksi();
+
+    $id = htmlspecialchars($data['id']);
+    $nama_artis = htmlspecialchars($data['nama_artis']);
+    $image = htmlspecialchars($data['image']);
+  
+    $query = "UPDATE artis SET
+                nama_artis = '$nama_artis',
+                image = '$image',
+                WHERE id = $id
+                ";
+  
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     return mysqli_affected_rows($conn);
 }
